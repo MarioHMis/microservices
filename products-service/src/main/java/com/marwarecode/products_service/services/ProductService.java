@@ -1,11 +1,14 @@
 package com.marwarecode.products_service.services;
 
 import com.marwarecode.products_service.model.dtos.ProductRequest;
+import com.marwarecode.products_service.model.dtos.ProductResponse;
 import com.marwarecode.products_service.model.entities.Product;
 import com.marwarecode.products_service.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +30,22 @@ public class ProductService {
         productRepository.save(product);
 
         log.info("Product added: {}", product);
+    }
+
+    public List<ProductResponse> getAllProducts() {
+        var products = productRepository.findAll();
+
+        return products.stream().map(this::mapToProductsResponse).toList();
+    }
+
+    private ProductResponse mapToProductsResponse(Product product) {
+        return ProductResponse.builder()
+                .id(product.getId())
+                .sku(product.getSku())
+                .name(product.getName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .status(product.getStatus())
+                .build();
     }
 }
