@@ -7,14 +7,14 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: ms_inventory
-      POSTGRES_USER: uncledave
-      POSTGRES_PASSWORD: Test123
+      POSTGRES_USER: POSTGRES_USER
+      POSTGRES_PASSWORD: POSTGRES_PASSWORD
     ports:
-      - 5431:5431
+      - 5432:5432
     expose:
-      - 5431
+      - 5432
     command:
-      -p 5431
+      -p 5432
 
   ### MySQL database for Orders
   db-orders:
@@ -22,12 +22,12 @@ services:
     image: mysql:8.0.33
     restart: unless-stopped
     environment:
-      MYSQL_DATABSE: ms_orders
-      MYSQL_USER: uncledave
-      MYSQL_PASSWORD: Test123
+      MYSQL_DATABASE: ms_orders
+      MYSQL_USER: mariohmis
+      MYSQL_PASSWORD: abismo12
     ports:
       - 3306:3306
     expose:
-      - 5431
+      - 3306
     command:
       - 3306
