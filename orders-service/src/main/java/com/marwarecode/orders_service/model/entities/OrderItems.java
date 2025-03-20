@@ -15,7 +15,6 @@ public class OrderItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String sku;
     private Double pricel;
     private Long quantity;
